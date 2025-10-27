@@ -100,6 +100,23 @@ function openModal(item) {
     modalVideo.src = item.url;
     modalVideo.style.display = 'block';
 
+    // Check if the media type is video
+    if (item.media_type === 'video') {
+        modalImage.src = item.thumbnail_url || 'https://via.placeholder.com/600x400?text=No+Thumbnail';
+        modalImage.alt = 'Video Thumbnail';
+        modalImage.style.display = 'block';
+        if (modalVideo) {
+            modalVideo.style.display = 'none';
+        }
+    } else {
+        modalImage.src = item.url;
+        modalImage.alt = item.title;
+        modalImage.style.display = 'block';
+        if (modalVideo) {
+            modalVideo.style.display = 'none';
+        }
+    }
+
     modalTitle.textContent = item.title;
     modalDate.textContent = `Date: ${item.date}`;
     modalExplanation.textContent = item.explanation;
